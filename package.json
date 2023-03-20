@@ -18,7 +18,6 @@
     "react-scripts": "5.0.1",
     "react-split-pane": "^2.0.3",
     "react-syntax-highlighter": "^15.5.0",
-    "redux-undo": "^1.0.1",
     "styled-components": "^5.3.6",
     "use-immer": "^0.8.1",
     "web-vitals": "^2.1.4"

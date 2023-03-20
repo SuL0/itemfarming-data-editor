@@ -30,9 +30,8 @@ function LinearProgressWithLabel(props) {
 }
 
 const Tree = (props) => {
-  const {treeData, setTreeData, testUndo, testPrint} = props;
+  const {treeData, setTreeData} = props;
   const [searchFoundCount, setSearchFoundCount] = useState(null);
-  testPrint()
 
   const titleRef = useRef();
   const subtitleRef = useRef();
