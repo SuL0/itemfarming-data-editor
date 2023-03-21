@@ -10,16 +10,26 @@ import Pane from 'react-split-pane/lib/Pane';
 import Box from '@mui/material/Box';
 import registerUndoRedoShortcut from "./component/undo-redo-shortcut";
 
-// ctrl+z, ctrl+y 단축키로서 undo redo
-// 브라우저 캐시 저장소를 이용해서 강제 종료되더라도 진행사항을 저장하게끔 만들기
-
 function App() {
   const [fileName, setFileName] = useState()
   const [treeDataState, dispatchTreeData] = useReducer(undoableTreeData())
   
   useEffect(() => {
+    const localStorageTreeData = localStorage.getItem('tree-data')
+    if (localStorageTreeData !== null) {
+      dispatchTreeData({
+        type: 'INITIALIZE',
+        payload: JSON.parse(localStorageTreeData)
+      })
+    }
     return registerUndoRedoShortcut(dispatchTreeData)
   }, []);
+
+  useEffect(() => {
+    if (treeDataState) {
+      localStorage.setItem('tree-data', JSON.stringify(treeDataState))
+    }
+  }, [treeDataState])
 
   const onReceiveFile = (file) => {
     setFileName(file.name);

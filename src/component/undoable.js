@@ -11,6 +11,8 @@ const undoable = (reducer) => {
     const { past, present, future } = state
 
     switch (action.type) {
+      case 'INITIALIZE':
+        return action.payload
       case 'UNDO':
         if (past.length == 0) return state
         const previous = past[past.length - 1]
