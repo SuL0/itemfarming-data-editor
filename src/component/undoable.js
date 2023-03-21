@@ -42,7 +42,10 @@ const undoable = (reducer) => {
           present: newPresent,
           future: []
         }
-        obj.past = obj.past.filter(element => { return element != undefined })  // 처음 기본값으로 undefined 들어가게 되니깐
+        obj.past = obj.past.filter(element => { return element != undefined })  // 처음 기본값으로 present: undefined 들어가게 되니깐
+        if (obj.past.length > 30) { // restrict max length of past
+          obj.past = obj.past.slice(past.length-30, past.length)
+        }
         return obj
     }
   }
